@@ -1,18 +1,14 @@
 Rails.application.routes.draw do
-  get 'topics/index'
-
-  get 'topics/show'
-
-  get 'topics/new'
-
-  get 'topics/edit'
-
-  get 'users/show'
-
+ 
   root to: 'home#index'
   
   devise_for :users
   resources :users, only: [:show]
+  
+  resources :topics do
+    resources :bookmarks, controller: 'topics/bookmarks' do #? nest bookmarks
+    end
+  end
   
   post :incoming, to: 'incoming#create'
 
