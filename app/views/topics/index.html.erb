@@ -4,9 +4,9 @@
 <div class='row'>
   <div class='col-md-10'>
     <% @topics.each do | topic | %>
-    <h3><%= topic.title %></h3>
-      <% topic.bookmarks.each do | bookmarks | %>
-      <li><%= bookmarks.url %></li>  
+    <h3><%= link_to topic.title, topic %></h3>
+      <% topic.bookmarks.each do | bookmark | %>
+      <li><%= link_to bookmark.url, bookmark.url %></li>  
       <% end %>
     <% end %>
   </div>
