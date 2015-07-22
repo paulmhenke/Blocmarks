@@ -1,13 +1,22 @@
 <h1>BlocMarks</h1>
-<p>Add a blocmark by sending an email to example@app9e30c2c68f7d4bda946026da2d61c748.mailgun.org</p>
+
+<div class='row'>
+  <div class='col-md-10'>
+    <p>Add a blocmark by sending an email to example@app9e30c2c68f7d4bda946026da2d61c748.mailgun.org</p>
+  </div>
+  <div class='col-md-2'>
+    <%= link_to "Create New Topic", new_topic_path, class: 'btn btn-success' %>
+  </div>
 
 <div class='row'>
   <div class='col-md-10'>
     <% @topics.each do | topic | %>
     <h3><%= link_to topic.title, topic %></h3>
+    <%= link_to "Add a Bookmark", new_topic_bookmark_path(topic), class: 'btn btn-success'%>
       <% topic.bookmarks.each do | bookmark | %>
-      <li><%= link_to bookmark.url, bookmark.url %></li>  
+        <li><%= link_to bookmark.url, bookmark.url %><%= link_to "Edit Bookmark", edit_topic_bookmark_path(topic, bookmark), class: 'btn btn-success' %></li>
       <% end %>
     <% end %>
   </div>
+  
 </div>

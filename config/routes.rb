@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   
   resources :topics do
-    resources :bookmarks, controller: 'topics/bookmarks' do #? nest bookmarks
+    resources :bookmarks, controller: 'topics/bookmarks' do 
     end
   end
   

@@ -1,0 +1,20 @@
+<h1>Add a Bookmark</h1>
+
+<%= form_for [@topic, @bookmark] do |f| %>
+  <% if @bookmark.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>There are <%= pluralize(@bookmark.errors.count, "error") %>.</h4>
+      <ul>
+        <% @bookmark.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+       </ul>
+    </div>
+  <% end %>
+      
+    <div class='form-group'>
+         <%= f.label :url %>
+         <%= f.text_field :url, class: 'form-control', placeholder: "Enter Bookmark URL" %>
+    </div>
+       <%= f.submit "Save", class: 'btn btn-success' %>
+<% end %>

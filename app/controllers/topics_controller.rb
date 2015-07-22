@@ -17,6 +17,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new(topic_params) #? should I just think of this as the standard way of doing this? 
     if @topic.save 
       flash[:notice] = "Topic created succesfully." 
+      redirect_to topics_path
     else
       redirect_to root
     end

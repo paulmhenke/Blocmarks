@@ -1,19 +1,21 @@
-class BookmarksController < ApplicationController
+class Topics::BookmarksController < ApplicationController
   def show
     @bookmark = Bookmark.find(params[:id])
   end
 
   def new
+    @topic = Topic.find(params[:topic_id])
     @bookmark = Bookmark.new
   end
   
   def create
     @topic = Topic.find(params[:topic_id])
-    @bookmark = current_user.bookmarks.build(params.require(:boomark).permit(:url))
+    @bookmark = Bookmark.new(params.require(:bookmark).permit(:url))
+    #@bookmark.user = current_user
     @bookmark.topic = @topic
     if @bookmark.save
       flash[:notice] = "Your bookmark was saved."
-      redirect_to @topic
+      redirect_to topics_path
     else
       redirect_to root
     end
