@@ -35,14 +35,14 @@ class Topics::BookmarksController < ApplicationController
     end
   end
   
-  def destroy
-    @bookmark = Bookmark.find(params[:id])
-    if @bookmark.destroy
-      flash[:notice] = "Bookmark has been deleted."
-      redirect_to @topic
-    else
-      redirect_to root
-    end
-  end
+  #def destroy
+   # @bookmark = Bookmark.find(params[:id])
+    #if @bookmark.destroy
+     # flash[:notice] = "Bookmark has been deleted."
+      #redirect_to @topic
+    #else
+     # redirect_to root
+    #end
+  #end
   
 end

@@ -14,7 +14,9 @@
     <h3><%= link_to topic.title, topic %></h3>
     <%= link_to "Add a Bookmark", new_topic_bookmark_path(topic), class: 'btn btn-success'%>
       <% topic.bookmarks.each do | bookmark | %>
-        <li><%= link_to bookmark.url, bookmark.url %><%= link_to "Edit Bookmark", edit_topic_bookmark_path(topic, bookmark), class: 'btn btn-success' %></li>
+        <li><%= link_to bookmark.url, bookmark.url %></li><%= link_to bookmark_path(bookmark), method: :delete, remote: true, class: 'btn btn-primary btn-sm' do %>
+          <span class="glyphicons glyphicons-remove"></span>
+        <% end %>
       <% end %>
     <% end %>
   </div>

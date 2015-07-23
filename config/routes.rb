@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   
   resources :topics do
-    resources :bookmarks, controller: 'topics/bookmarks' do 
+    resources :bookmarks, except: [:destroy], controller: 'topics/bookmarks' do 
     end
   end
+  resources :bookmarks, only: [:destroy]
   
   post :incoming, to: 'incoming#create'
 
