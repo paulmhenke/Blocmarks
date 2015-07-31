@@ -4,6 +4,10 @@ member = User.new(name: "Paul Henke", email: "paulmhenke@gmail.com", password: "
 member.skip_confirmation!
 member.save!
 
+member_two = User.new(name: "Another User", email: "phenke@hotmail.com", password: "helloworld")
+member_two.skip_confirmation!
+member_two.save!
+
 sports = Topic.create!(title: "Sports", user_id: member.id)
 sports.save!
 business = Topic.create!(title: "Business", user_id: member.id)

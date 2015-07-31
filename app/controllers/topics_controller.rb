@@ -1,11 +1,13 @@
 class TopicsController < ApplicationController
   def index
     @user = current_user
-    @topics = Topic.all
+    @topics = Topic.where(user_id: current_user)
+    
   end
 
   def show
     @topic = Topic.find(params[:id])
+    authorize @topic
     @bookmarks = @topic.bookmarks
   end
 
@@ -29,6 +31,7 @@ class TopicsController < ApplicationController
   
   def update
     @topic = Topic.find(params[:id])
+    authorize @topic
     if @topic.update_attributes(topic_params)
       redirect_to @topic
     else
@@ -38,6 +41,7 @@ class TopicsController < ApplicationController
   
   def destroy
     @topic = Topic.find(params[:id])
+    authorize @topic
     if @topic.destroy
       flash[:notice] = "Topic was deleted."
       redirect_to topics_path
