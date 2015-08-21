@@ -1,7 +1,8 @@
 class TopicsController < ApplicationController
   def index
     @user = current_user
-    @topics = Topic.where(user_id: current_user)
+    #@topics = Topic.where(user_id: current_user)
+    @topics = Topic.all
     
   end
 
@@ -16,7 +17,7 @@ class TopicsController < ApplicationController
   end
   
   def create
-    @topic = Topic.new(topic_params) #? should I just think of this as the standard way of doing this? 
+    @topic = Topic.new(topic_params)  
     if @topic.save 
       flash[:notice] = "Topic created succesfully." 
       redirect_to topics_path

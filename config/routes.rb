@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     resources :bookmarks, except: [:destroy], controller: 'topics/bookmarks' do 
     end
   end
-  resources :bookmarks, only: [:destroy]
+  resources :bookmarks, only: [:destroy] do
+    resources :likes, only: [:create, :destroy]
+  end
   
   post :incoming, to: 'incoming#create'
 

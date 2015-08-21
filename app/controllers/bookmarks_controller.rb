@@ -2,6 +2,7 @@ class BookmarksController < ApplicationController
   
   def destroy
     @bookmark = Bookmark.find(params[:id])
+    authorize @bookmark
     
     if @bookmark.destroy
       flash[:notice] = "Bookmark Removed."
@@ -14,5 +15,6 @@ class BookmarksController < ApplicationController
       format.js { render 'destroy.js.erb' }
     end
   end
+  
   
 end

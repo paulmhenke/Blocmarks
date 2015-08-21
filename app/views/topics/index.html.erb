@@ -9,16 +9,32 @@
   </div>
 
 <div class='row'>
-  <div class='col-md-10'>
+  <div class='col-md-12'>
     <% @topics.each do | topic | %>
-    <h3><%= link_to topic.title, topic %></h3>
-    <%= link_to "Add a Bookmark", new_topic_bookmark_path(topic), class: 'btn btn-success'%>
-      <% topic.bookmarks.each do | bookmark | %>
-        <li><%= link_to bookmark.url, bookmark.url %></li><%= link_to bookmark_path(bookmark), method: :delete, remote: true, class: 'btn btn-primary btn-sm' do %>
-          <span class="glyphicons glyphicons-remove"></span>
+      <h3><%= link_to topic.title, topic %></h3>
+      <%= link_to "Add a Bookmark", new_topic_bookmark_path(topic), class: 'btn btn-success'%>
+      <ul class='list-unstyled'>
+        <% topic.bookmarks.each do | bookmark | %>
+          <li class='bookmark'>
+            <%= link_to bookmark.url, bookmark.url %>
+            <div class='pull-right'>
+              <%= link_to bookmark_path(bookmark), method: :delete, remote: true, class: 'btn btn-primary btn-sm' do %>
+                <span class="glyphicon glyphicon-remove"></span>
+              <% end %>
+              <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
+            </div>
+          </li>
         <% end %>
-      <% end %>
+      </ul>
     <% end %>
+  </div>
+  <div class='col-md-2'>
+    
+  </div>
+  <div class='col-md-10'>
+    
+      
+    
   </div>
   
 </div>
