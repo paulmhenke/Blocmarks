@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          
   has_many :topics
   has_many :likes, dependent: :destroy
+  has_many :liked_bookmarks, through: :likes, source: :bookmark #? is this the best way to define @liked? Any alternatives?
   
   def liked(bookmark) 
     likes.where(bookmark_id: bookmark.id).first 
