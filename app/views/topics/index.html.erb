@@ -15,7 +15,7 @@
       <%= link_to "Add a Bookmark", new_topic_bookmark_path(topic), class: 'btn btn-success'%>
       <ul class='list-unstyled'>
         <% topic.bookmarks.each do | bookmark | %>
-          <li class='bookmark'>
+          <%= content_tag :li, id: "bookmark-#{bookmark.id}", class: "bookmark" do %>
             <%= link_to bookmark.url, bookmark.url %>
             <div class='pull-right'>
               <%= link_to bookmark_path(bookmark), method: :delete, remote: true, class: 'btn btn-primary btn-sm' do %>
@@ -23,7 +23,7 @@
               <% end %>
               <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
             </div>
-          </li>
+          <% end %>
         <% end %>
       </ul>
     <% end %>
