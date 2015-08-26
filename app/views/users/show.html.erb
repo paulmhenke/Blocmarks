@@ -1,40 +1,41 @@
-<h1><%= @user %>'s BlocMarks</h1>
-
-<div class='row'>
-  <div class='col-md-10'>
-   
-  </div>
-  <div class='col-md-2'>
-    <%= link_to "Create New Topic", new_topic_path, class: 'btn btn-success' %>
-  </div>
+<h1><%= @user.name %>'s BlocMarks</h1>
 
 <div class='row'>
   <div class='col-md-12'>
-    <% @user_bookmarks.each do | user_bookmark | %>
-      <h3><%= link_to topic.title, topic %></h3>
-      <%= link_to "Add a Bookmark", new_topic_bookmark_path(topic), class: 'btn btn-success'%>
-      <ul class='list-unstyled'>
-        <% topic.bookmarks.each do | bookmark | %>
-          <li class='bookmark'>
-            <%= link_to bookmark.url, bookmark.url %>
-            <div class='pull-right'>
-              <%= link_to bookmark_path(bookmark), method: :delete, remote: true, class: 'btn btn-primary btn-sm' do %>
-                <span class="glyphicon glyphicon-remove"></span>
-              <% end %>
-              <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-  </div>
-  <div class='col-md-2'>
-    
-  </div>
-  <div class='col-md-10'>
-    
+    <h2>My Bookmarks</h2>
+      <% @user_bookmark_topics.each do | topic, user_bookmarks | %>
+        <h3><%= link_to topic.title , topic %></h3>
+        
+        <ul class='list-unstyled'>
+          <% user_bookmarks.each do | bookmark | %>
+            <li class='bookmark'>
+              <%= link_to bookmark.url, bookmark.url %>
+              <div class='pull-right'>
+                <%= link_to bookmark_path(bookmark), method: :delete, remote: true, class: 'btn btn-primary btn-sm' do %>
+                  <span class="glyphicon glyphicon-remove"></span>
+                <% end %>
+                <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
       
-    
-  </div>
-  
-</div>
+    <h2>Liked Bookmarks</h2>
+      <% @liked_bookmark_topics.each do | topic, liked_bookmarks | %>
+        <h3><%= link_to topic.title , topic %></h3>
+        
+        <ul class='list-unstyled'>
+          <% liked_bookmarks.each do | bookmark | %>
+            <li class='bookmark'>
+              <%= link_to bookmark.url, bookmark.url %>
+              <div class='pull-right'>
+                <%= link_to bookmark_path(bookmark), method: :delete, remote: true, class: 'btn btn-primary btn-sm' do %>
+                  <span class="glyphicon glyphicon-remove"></span>
+                <% end %>
+                <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
