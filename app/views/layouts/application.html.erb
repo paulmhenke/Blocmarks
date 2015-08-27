@@ -13,8 +13,8 @@
   <div class="pull-right user-info">
     <% if current_user %>
       Logged in as <%= current_user.name %> |
-      <%= link_to "Topics", topics_path %> |
-      <%= link_to "My Account", user_path(current_user) %> |
+      <%= link_to "All Topics", topics_path %> |
+      <%= link_to "My Blocmarks", user_path(current_user) %> |
       <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
     <% else %>
       <%= link_to "Sign Up", new_user_registration_path %> or

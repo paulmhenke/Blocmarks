@@ -1,23 +1,22 @@
 class TopicsController < ApplicationController
   def index
     @user = current_user
-    #@topics = Topic.where(user_id: current_user)
     @topics = Topic.all
-    
   end
 
   def show
     @topic = Topic.find(params[:id])
-    authorize @topic
     @bookmarks = @topic.bookmarks
   end
 
   def new
     @topic = Topic.new
+    authorize @topic
   end
   
   def create
-    @topic = Topic.new(topic_params)  
+    @topic = Topic.new(topic_params) 
+    authorize @topic
     if @topic.save 
       flash[:notice] = "Topic created succesfully." 
       redirect_to topics_path
@@ -28,6 +27,7 @@ class TopicsController < ApplicationController
 
   def edit
     @topic = Topic.find(params[:id])
+    authorize @topic
   end
   
   def update
