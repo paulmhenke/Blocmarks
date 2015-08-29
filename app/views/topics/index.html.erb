@@ -22,17 +22,7 @@
       <% end %>
       <ul class='list-unstyled'>
         <% topic.bookmarks.each do | bookmark | %>
-          <%= content_tag :li, id: "bookmark-#{bookmark.id}", class: "bookmark" do %>
-            <%= link_to bookmark.url, bookmark.url %>
-            <div class='pull-right'>
-              <% if policy(bookmark).destroy? %>
-                <%= link_to bookmark_path(bookmark), method: :delete, remote: true, class: 'btn btn-primary btn-sm' do %>
-                  <span class="glyphicon glyphicon-remove"></span>
-                <% end %>
-              <% end %>
-              <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
-            </div>
-          <% end %>
+          <%= render bookmark %>
         <% end %>
       </ul>
     <% end %>

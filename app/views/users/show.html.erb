@@ -8,15 +8,7 @@
         
         <ul class='list-unstyled'>
           <% user_bookmarks.each do | bookmark | %>
-            <li class='bookmark'>
-              <%= link_to bookmark.url, bookmark.url %>
-              <div class='pull-right'>
-                <%= link_to bookmark_path(bookmark), method: :delete, remote: true, class: 'btn btn-primary btn-sm' do %>
-                  <span class="glyphicon glyphicon-remove"></span>
-                <% end %>
-                <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
-              </div>
-            </li>
+            <%= render bookmark %>
           <% end %>
         </ul>
       <% end %>
@@ -24,18 +16,9 @@
     <h2>Liked Bookmarks</h2>
       <% @liked_bookmark_topics.each do | topic, liked_bookmarks | %>
         <h3><%= link_to topic.title , topic %></h3>
-        
         <ul class='list-unstyled'>
           <% liked_bookmarks.each do | bookmark | %>
-            <li class='bookmark'>
-              <%= link_to bookmark.url, bookmark.url %>
-              <div class='pull-right'>
-                <%= link_to bookmark_path(bookmark), method: :delete, remote: true, class: 'btn btn-primary btn-sm' do %>
-                  <span class="glyphicon glyphicon-remove"></span>
-                <% end %>
-                <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
-              </div>
-            </li>
+            <%= render bookmark %>
           <% end %>
         </ul>
       <% end %>

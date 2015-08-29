@@ -12,6 +12,10 @@
 
 .bookmark {
   padding: 10px 0px 10px 5px;
+  .bookmark-actions {
+    margin-top: -5px;
+    margin-right: 5px;
+  }
 }
 .bookmark:nth-child(odd){ 
   background-color: #DDD;
